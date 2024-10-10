@@ -61,7 +61,7 @@ export default {
     return {
       from: 0,
       to: 0,
-      selectedFilter: null,
+      selectedFilter: [],
       groupBy: GROUP_BY_FILTER[1],
       groupByfilterItemsList: GROUP_BY_OPTIONS.DAY.map(this.translateOptions),
       selectedGroupByFilter: null,
@@ -80,11 +80,12 @@ export default {
     fetchAllData() {
       if (this.selectedFilter) {
         const { from, to, groupBy, businessHours } = this;
+        const selectedLabelIds = this.selectedFilter.map(label => label.id);
         this.$store.dispatch('fetchAccountSummary', {
           from,
           to,
           type: this.type,
-          id: this.selectedFilter.id,
+          id: selectedLabelIds,
           groupBy: groupBy.period,
           businessHours,
         });
@@ -103,12 +104,13 @@ export default {
       ].forEach(async key => {
         try {
           const { from, to, groupBy, businessHours } = this;
+          const selectedLabelIds = this.selectedFilter.map(label => label.id);
           this.$store.dispatch('fetchAccountReport', {
             metric: REPORTS_KEYS[key],
             from,
             to,
             type: this.type,
-            id: this.selectedFilter.id,
+            id: selectedLabelIds,
             groupBy: groupBy.period,
             businessHours,
           });
