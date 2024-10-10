@@ -176,6 +176,7 @@ export default {
           :options="filterItemsList"
           :option-height="24"
           :show-labels="false"
+          :multiple="true"
           @update:model-value="changeFilterSelection"
         >
           <template #singleLabel="props">
@@ -223,6 +224,7 @@ export default {
           :options="filterItemsList"
           :option-height="24"
           :show-labels="false"
+          :multiple="true"
           @update:model-value="changeFilterSelection"
         >
           <template #singleLabel="props">
@@ -277,6 +279,7 @@ export default {
           :options="filterItemsList"
           :searchable="false"
           :allow-empty="false"
+          :multiple="true"
           @update:model-value="changeFilterSelection"
         />
       </div>
